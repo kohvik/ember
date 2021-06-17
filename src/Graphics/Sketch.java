@@ -45,12 +45,13 @@ public class Sketch extends JPanel {
             Main.vikings[i].Draw(graphics);
         }
 
-        //sketching towers
+        //sketching towers and their attacks by iterating through occupied
         for (int y = 0; y < Main.occupied.length; y++) {
             for (int x = 0; x < Main.occupied[y].length; x++) {
                 for (int i = 0; i < Main.buildings.length; i++)
                 if (Main.occupied[x][y] == Main.buildings[i].id) {
                     Main.buildings[i].Draw(graphics, x, y);
+                    Main.buildings[i].doAttack(graphics, x, y);
                 }
             }
         }
@@ -62,7 +63,7 @@ public class Sketch extends JPanel {
         if (Main.lives > 0) {
             graphics.drawString("lives: " + (Main.lives), Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y + 20);
         }
-        else if (Main.lives < 0) {
+        else {
             graphics.drawString("lives: 0", Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y + 20);
             DeathMessage(graphics);
         }

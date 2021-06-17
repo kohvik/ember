@@ -3,7 +3,6 @@ package Graphics;
 import javax.swing.*;
 import java.awt.*;
 import Game.Event;
-import java.awt.event.MouseListener;
 
 public class Frame extends JFrame {
 

@@ -11,8 +11,11 @@ public class Main {
 
     public static Point[][] coordinates = new Point[8][8];
     public static int[][] occupied = new int[8][8];
+    public static int[][] repeat = new int[8][8];
+    public static long[][] preAttackTime = new long[8][8];
 
-    public static Level level1 = new Level(new int[]{5,3});
+    //establishing levels
+    public static Level level1 = new Level(new int[]{30,5});
     public static Level level2 = new Level(new int[]{10,5});
     public static Level[] levels = {level1,level2};
 
@@ -22,7 +25,10 @@ public class Main {
 
     public static Entity[] warriors;
     public static Entity[] vikings;
+    public static Entity[][] entities;
     public static Building[] buildings;
+
+    public static long currentTime;
 
     public static void main(String[] args) {
 
@@ -47,6 +53,9 @@ public class Main {
                 }
 
             }
+
+            //keeping current time up to date
+            currentTime = System.currentTimeMillis();
 
             //refreshing the screen
             frame.sketch.repaint();

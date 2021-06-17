@@ -6,13 +6,15 @@ public abstract class Entity {
 
     public int health;
     public int speed;
+    public int value;
     public int position;
     public boolean survived;
 
-    public Entity(int health, int speed, int position, boolean survived) {
+    public Entity(int health, int speed, int value, int position, boolean survived) {
 
     this.health = health;
     this.speed = speed;
+    this.value = value;
     this.position = position;
     this.survived = survived;
 

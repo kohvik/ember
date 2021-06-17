@@ -4,8 +4,6 @@ import Entities.Entity;
 import Entities.Warrior;
 import Entities.Viking;
 
-import java.awt.*;
-
 public class Level {
 
     int[] enemies = new int[1];
@@ -29,6 +27,10 @@ public class Level {
         for (int i = 0; i < Main.vikings.length; i++) {
             Main.vikings[i] = new Viking(100, 2, (-i * 50) + (Main.warriors[Main.warriors.length - 1].position) - 50, true);
         }
+
+        //filling entities array with entities
+        Main.entities = new Entity[][]{Main.warriors, Main.vikings};
+
     }
 
 }
