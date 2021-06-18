@@ -22,20 +22,20 @@ public class Sketch extends JPanel {
         graphics.setColor(new Color(0, 0, 0));
 
         // draws placement squares
-        for (int y = 0; y < Main.coordinates.length; y++) {
+        for (int y = 0; y < Main.buildingInfo.coordinates.length; y++) {
 
-            for (int x = 0; x < Main.coordinates[0].length; x++) {
+            for (int x = 0; x < Main.buildingInfo.coordinates[0].length; x++) {
 
-                graphics.drawRect(Main.coordinates[x][y].x - 30, Main.coordinates[x][y].y - 30, 60, 60);
+                graphics.drawRect(Main.buildingInfo.coordinates[x][y].x - 30, Main.buildingInfo.coordinates[x][y].y - 30, 60, 60);
 
             }
         }
 
         //draws main path for enemies
-        graphics.fillRect(Main.coordinates[0][3].x - 50, Main.coordinates[0][3].y - 50, 820, 200);
+        graphics.fillRect(Main.buildingInfo.coordinates[0][3].x - 50, Main.buildingInfo.coordinates[0][3].y - 50, 820, 200);
         //draws nice spot for info
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(Main.coordinates[7][7].x - 50,Main.coordinates[7][7].y - 50, 100, 100);
+        graphics.fillRect(Main.buildingInfo.coordinates[7][7].x - 50,Main.buildingInfo.coordinates[7][7].y - 50, 100, 100);
 
         //sketching entities
         for (int i = 0; i < Main.warriors.length; i++) {
@@ -46,10 +46,10 @@ public class Sketch extends JPanel {
         }
 
         //sketching towers and their attacks by iterating through occupied
-        for (int y = 0; y < Main.occupied.length; y++) {
-            for (int x = 0; x < Main.occupied[y].length; x++) {
+        for (int y = 0; y < Main.buildingInfo.occupied.length; y++) {
+            for (int x = 0; x < Main.buildingInfo.occupied[y].length; x++) {
                 for (int i = 0; i < Main.buildings.length; i++)
-                if (Main.occupied[x][y] == Main.buildings[i].id) {
+                if (Main.buildingInfo.occupied[x][y] == Main.buildings[i].id) {
                     Main.buildings[i].Draw(graphics, x, y);
                     Main.buildings[i].doAttack(graphics, x, y);
                 }
@@ -58,13 +58,13 @@ public class Sketch extends JPanel {
 
         //sketching values
         graphics.setColor(Color.BLACK);
-        graphics.drawString("gold: " + (Main.gold), Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y - 20);
-        graphics.drawString("level: " + (Main.currentLevel + 1), Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y);
+        graphics.drawString("gold: " + (Main.gold), Main.buildingInfo.coordinates[7][7].x - 30, Main.buildingInfo.coordinates[7][7].y - 20);
+        graphics.drawString("level: " + (Main.currentLevel + 1), Main.buildingInfo.coordinates[7][7].x - 30, Main.buildingInfo.coordinates[7][7].y);
         if (Main.lives > 0) {
-            graphics.drawString("lives: " + (Main.lives), Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y + 20);
+            graphics.drawString("lives: " + (Main.lives), Main.buildingInfo.coordinates[7][7].x - 30, Main.buildingInfo.coordinates[7][7].y + 20);
         }
         else {
-            graphics.drawString("lives: 0", Main.coordinates[7][7].x - 30, Main.coordinates[7][7].y + 20);
+            graphics.drawString("lives: 0", Main.buildingInfo.coordinates[7][7].x - 30, Main.buildingInfo.coordinates[7][7].y + 20);
             DeathMessage(graphics);
         }
 

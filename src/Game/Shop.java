@@ -9,7 +9,7 @@ public class Shop {
 
         if (Main.gold >= Main.buildings[0].cost) {
 
-            Main.occupied[mousePosition.x][mousePosition.y] = Main.buildings[0].id;
+            Main.buildingInfo.occupied[mousePosition.x][mousePosition.y] = Main.buildings[0].id;
             Main.gold -= Main.buildings[0].cost;
 
         }

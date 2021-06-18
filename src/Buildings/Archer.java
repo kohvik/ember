@@ -14,7 +14,7 @@ public class Archer extends Building {
     public void Draw(Graphics2D graphics, int x, int y) {
 
         graphics.setColor(new Color(19, 60, 121));
-        graphics.fillRect(Main.coordinates[x][y].x-20, Main.coordinates[x][y].y-20, 40, 40);
+        graphics.fillRect(Main.buildingInfo.coordinates[x][y].x-20, Main.buildingInfo.coordinates[x][y].y-20, 40, 40);
 
     }
 
@@ -22,15 +22,15 @@ public class Archer extends Building {
 
         //accounting for attack speed of 1 attack per second
 
-        if ((Main.currentTime - Main.preAttackTime[x][y]) > 1000 || Main.repeat[x][y] > 0) {
+        if ((Main.currentTime - Main.buildingInfo.preAttackTime[x][y]) > 1000 || Main.buildingInfo.repeat[x][y] > 0) {
 
-            if (Main.repeat[x][y] > 0) {
-                Main.repeat[x][y]--;
+            if (Main.buildingInfo.repeat[x][y] > 0) {
+                Main.buildingInfo.repeat[x][y]--;
             }
 
             else {
-                Main.preAttackTime[x][y] = Main.currentTime;
-                Main.repeat[x][y] = 6;
+                Main.buildingInfo.preAttackTime[x][y] = Main.currentTime;
+                Main.buildingInfo.repeat[x][y] = 6;
             }
 
             int furthestPosition = 0;
@@ -51,11 +51,11 @@ public class Archer extends Building {
             if (furthestEntity != null) {
                 //drawing the shot
                 graphics.setColor(new Color(194, 158, 73));
-                graphics.setStroke(new BasicStroke(Main.repeat[x][y]*2));
-                graphics.drawLine(Main.coordinates[x][y].x, Main.coordinates[x][y].y, furthestPosition ,390);
+                graphics.setStroke(new BasicStroke(Main.buildingInfo.repeat[x][y]*2));
+                graphics.drawLine(Main.buildingInfo.coordinates[x][y].x, Main.buildingInfo.coordinates[x][y].y, furthestPosition ,390);
 
                 //accounting for damage done, only once per shot (hence only occurs for a single repeat value)
-                if (Main.repeat[x][y] == 0) {
+                if (Main.buildingInfo.repeat[x][y] == 0) {
                     furthestEntity.health -= 50;
                     System.out.println(furthestEntity.health);
                 }

@@ -9,10 +9,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static Point[][] coordinates = new Point[8][8];
-    public static int[][] occupied = new int[8][8];
-    public static int[][] repeat = new int[8][8];
-    public static long[][] preAttackTime = new long[8][8];
+//    public static Point[][] coordinates = new Point[8][8];
+//    public static int[][] occupied = new int[8][8];
+//    public static int[][] repeat = new int[8][8];
+//    public static long[][] preAttackTime = new long[8][8];
+
+    public static BuildingInfo buildingInfo = new BuildingInfo(new Point[8][8], new int[8][8], new int[8][8], new long[8][8]);
 
     //establishing levels
     public static Level level1 = new Level(new int[]{30,5});
@@ -45,10 +47,10 @@ public class Main {
         while (true) {
 
             //sets values for all coordinates in the center of each square.
-            for (int x = 0; x < coordinates.length; x++) {
-                for (int y = 0; y < coordinates[x].length; y++) {
+            for (int x = 0; x < buildingInfo.coordinates.length; x++) {
+                for (int y = 0; y < buildingInfo.coordinates[x].length; y++) {
 
-                    coordinates[x][y] = new Point(((x+1)*100-50),((y+1)*100-50));
+                    buildingInfo.coordinates[x][y] = new Point(((x+1)*100-50),((y+1)*100-50));
 
                 }
 
