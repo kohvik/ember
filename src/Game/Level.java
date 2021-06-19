@@ -4,9 +4,11 @@ import Entities.Entity;
 import Entities.Warrior;
 import Entities.Viking;
 
+import java.util.Arrays;
+
 public class Level {
 
-    int[] enemies = new int[1];
+    int[] enemies;
 
     public Level(int[] enemies) {
 

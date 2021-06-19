@@ -5,6 +5,7 @@ import Buildings.Building;
 import Entities.Entity;
 import Graphics.Frame;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -17,13 +18,15 @@ public class Main {
     public static BuildingInfo buildingInfo = new BuildingInfo(new Point[8][8], new int[8][8], new int[8][8], new long[8][8]);
 
     //establishing levels
-    public static Level level1 = new Level(new int[]{30,5});
+    public static Level level1 = new Level(new int[]{5,0});
     public static Level level2 = new Level(new int[]{10,5});
-    public static Level[] levels = {level1,level2};
+    public static Level level3 = new Level(new int[]{3,10});
+    public static Level[] levels = {level1,level2,level3};
 
     public static int lives = 3;
     public static int gold = 100;
     public static int currentLevel = 0;
+    public static int livingEnemies;
 
     public static Entity[] warriors;
     public static Entity[] vikings;
@@ -43,8 +46,24 @@ public class Main {
 
         levels[currentLevel].Load();
 
+        livingEnemies = Arrays.stream(levels[currentLevel].enemies).sum();
+
         //game loop
         while (true) {
+
+            if (livingEnemies <= 0) {
+
+                currentLevel++;
+
+                try {
+                    TimeUnit.MILLISECONDS.sleep(3000);
+                } catch (Exception e) {System.out.println("could not perform sleep function");}
+
+                frame.sketch.repaint();
+
+                levels[currentLevel].Load();
+                livingEnemies = Arrays.stream(levels[currentLevel].enemies).sum();
+            }
 
             //sets values for all coordinates in the center of each square.
             for (int x = 0; x < buildingInfo.coordinates.length; x++) {
@@ -60,10 +79,11 @@ public class Main {
             currentTime = System.currentTimeMillis();
 
             //refreshing the screen
-            frame.sketch.repaint();
+                frame.sketch.repaint();
+
             //using sleep function to set fps to 100
             try {
-                TimeUnit.MILLISECONDS.sleep(10);
+                TimeUnit.MILLISECONDS.sleep(15);
             } catch (Exception e) {System.out.println("could not perform sleep function");}
 
         }

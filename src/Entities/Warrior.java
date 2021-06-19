@@ -21,6 +21,7 @@ public class Warrior extends Entity {
             else if (survived) {
                 survived = false;
                 Main.lives--;
+                Main.livingEnemies--;
             }
 
         }
@@ -28,6 +29,8 @@ public class Warrior extends Entity {
 
             Main.gold += value;
             survived = false;
+            Main.livingEnemies--;
+
         }
 
     }

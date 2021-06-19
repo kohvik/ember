@@ -56,8 +56,7 @@ public class Archer extends Building {
 
                 //accounting for damage done, only once per shot (hence only occurs for a single repeat value)
                 if (Main.buildingInfo.repeat[x][y] == 0) {
-                    furthestEntity.health -= 50;
-                    System.out.println(furthestEntity.health);
+                    furthestEntity.health -= 20;
                 }
 
             }

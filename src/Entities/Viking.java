@@ -23,6 +23,7 @@ public class Viking extends Entity {
             else if (survived) {
                 survived = false;
                 Main.lives--;
+                Main.livingEnemies--;
             }
 
         }
@@ -30,6 +31,8 @@ public class Viking extends Entity {
 
             Main.gold += value;
             survived = false;
+            Main.livingEnemies--;
+
         }
 
     }
