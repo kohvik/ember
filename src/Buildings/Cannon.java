@@ -6,33 +6,34 @@ import Game.Shop;
 
 import java.awt.*;
 
-public class Archer extends Building {
+public class Cannon extends Building {
 
     int furthestPosition = 0;
     Entity furthestEntity = null;
 
-    public Archer(int cost, int id, String name) {
+    public Cannon(int cost, int id, String name) {
         super(cost, id, name);
     }
 
     public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
 
         if (shopDraw) {
-            graphics.setColor(new Color(19, 60, 121));
+            graphics.setColor(new Color(104, 8, 25));
             graphics.fillRect(Shop.shopCoordinates[x][y].x - 20, Shop.shopCoordinates[x][y].y - 20, 40, 40);
+            graphics.setColor(new Color(0, 0, 0));
+            graphics.fillRect(Shop.shopCoordinates[x][y].x - 10, Shop.shopCoordinates[x][y].y - 10, 20, 20);
         }
         else {
-            graphics.setColor(new Color(19, 60, 121));
+            graphics.setColor(new Color(104, 8, 25));
             graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 20, Main.buildingInfo[x][y].coordinates.y - 20, 40, 40);
+            graphics.setColor(new Color(0, 0, 0));
+            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
         }
-
     }
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 
-        //accounting for attack speed of 1 attack per second
-
-        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 1000 || Main.buildingInfo[x][y].repeat > 0) {
+        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 3000 || Main.buildingInfo[x][y].repeat > 0) {
 
             if (Main.buildingInfo[x][y].repeat > 0) {
                 Main.buildingInfo[x][y].repeat--;
@@ -40,10 +41,11 @@ public class Archer extends Building {
 
             else {
                 Main.buildingInfo[x][y].preAttackTime = Main.currentTime;
-                Main.buildingInfo[x][y].repeat = 6;
+                Main.buildingInfo[x][y].repeat = 10;
                 furthestEntity = null;
                 furthestPosition = 0;
             }
+
 
 
             for (int a = 0; a < Main.entities.length; a++) {
@@ -51,21 +53,21 @@ public class Archer extends Building {
                     if (Main.entities[a][b].position >= furthestPosition && Main.entities[a][b].survived) {
                         furthestPosition = Main.entities[a][b].position;
 
-                        if (Main.buildingInfo[x][y].repeat == 6)
-                        furthestEntity = Main.entities[a][b];
+                        if (Main.buildingInfo[x][y].repeat == 10)
+                            furthestEntity = Main.entities[a][b];
                     }
                 }
             }
 
             if (furthestEntity != null) {
                 //drawing the shot
-                graphics.setColor(new Color(194, 158, 73));
+                graphics.setColor(new Color(97, 144, 253));
                 graphics.setStroke(new BasicStroke(Main.buildingInfo[x][y].repeat * 2));
                 graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position ,390);
 
-                //accounting for damage done, only once per shot (hence only occurs for a single repeat value)
-                if (Main.buildingInfo[x][y].repeat == 6) {
-                    furthestEntity.health -= 20;
+                //accounting for damage done
+                if (Main.buildingInfo[x][y].repeat == 10) {
+                    furthestEntity.health -= 100;
                 }
 
             }

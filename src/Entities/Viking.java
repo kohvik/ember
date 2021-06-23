@@ -7,7 +7,7 @@ import java.awt.*;
 public class Viking extends Entity {
 
     public Viking(int health, int speed, int position, boolean survived) {
-        super(health, speed, 80, position, survived);
+        super(health, speed, 10, position, survived);
 
     }
 
@@ -27,7 +27,7 @@ public class Viking extends Entity {
             }
 
         }
-        else if (survived == true){
+        else if (survived){
 
             Main.gold += value;
             survived = false;

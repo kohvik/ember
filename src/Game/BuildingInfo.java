@@ -4,12 +4,12 @@ import java.awt.*;
 
 public class BuildingInfo {
 
-    public Point[][] coordinates;
-    public int[][] occupied;
-    public int[][] repeat;
-    public long[][] preAttackTime;
+    public Point coordinates;
+    public int occupied;
+    public int repeat;
+    public long preAttackTime;
 
-    public BuildingInfo(Point[][] coordinates, int[][] occupied, int[][] repeat, long[][] preAttackTime) {
+    public BuildingInfo(Point coordinates, int occupied, int repeat, long preAttackTime) {
 
         this.coordinates = coordinates;
         this.occupied = occupied;

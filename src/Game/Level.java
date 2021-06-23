@@ -1,14 +1,13 @@
 package Game;
 
-import Entities.Entity;
-import Entities.Warrior;
-import Entities.Viking;
+import Entities.*;
 
 import java.util.Arrays;
 
 public class Level {
 
     int[] enemies;
+
 
     public Level(int[] enemies) {
 
@@ -17,21 +16,33 @@ public class Level {
     }
 
     public void Load() {
+        int lastEnemyPosition = -500;
+
         Main.warriors = new Entity[this.enemies[0]];
         Main.vikings = new Entity[this.enemies[1]];
+        Main.golems = new Entity[this.enemies[2]];
 
         //loading warriors
+        Main.warriors = new Entity[this.enemies[0]];
         for (int i = 0; i < Main.warriors.length; i++) {
-            Main.warriors[i] = new Warrior(100, 1, (-i * 50), true);
+            Main.warriors[i] = new Warrior(100, 1, lastEnemyPosition, true);
+            lastEnemyPosition -= 50;
         }
 
         //loading vikings
         for (int i = 0; i < Main.vikings.length; i++) {
-            Main.vikings[i] = new Viking(100, 2, (-i * 50) + (Main.warriors[Main.warriors.length - 1].position) - 50, true);
+            Main.vikings[i] = new Viking(60, 2, lastEnemyPosition, true);
+            lastEnemyPosition -= 50;
+        }
+
+        //loading golems
+        for (int i = 0; i < Main.golems.length; i++) {
+            Main.golems[i] = new Golem(250, 1, lastEnemyPosition, true);
+            lastEnemyPosition -= 50;
         }
 
         //filling entities array with entities
-        Main.entities = new Entity[][]{Main.warriors, Main.vikings};
+        Main.entities = new Entity[][]{Main.warriors, Main.vikings, Main.golems};
 
     }
 
