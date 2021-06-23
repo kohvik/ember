@@ -9,7 +9,7 @@ public class Shop {
     public boolean isOpen;
     public Dimension shopSize;
 
-    public static Point[][] shopCoordinates = new Point[5][2];
+    public static Point[][] shopCoordinates = new Point[5][3];
 
     public void Establish() {
         for (int x = 0; x < shopCoordinates.length; x++) {
@@ -37,10 +37,17 @@ public class Shop {
     public void Purchase(Point mousePosition) {
 
         if (Main.gold >= Main.buildings[(selected - 1)].cost) {
+            //ensuring you can't build on the main path
+            if (mousePosition.y < 3 || mousePosition.y > 4) {
+                //ensuring you can't build on the info
+                if (mousePosition.x == 7 && mousePosition.y == 7) {
 
-            Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
-            Main.gold -= Main.buildings[(selected - 1)].cost;
-
+                    }
+                else {
+                    Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
+                    Main.gold -= Main.buildings[(selected - 1)].cost;
+                }
+            }
         }
     }
 
@@ -51,18 +58,29 @@ public class Shop {
         graphics.setColor(Color.BLACK);
         graphics.drawString("shop", 397, 425 - (shopSize.height/2));
 
-        //still unsure how to iterate drawing
-//        for (int x = 0; x < shopCoordinates[0].length && x < Main.buildings.length; x++) {
-//                Main.buildings[x].Draw(graphics, x, 0, true);
-//        }
+        //drawing shop buildings and their related text
+        int i = 0;
+        for (int a = 0; a < Main.buildings.length; a++) {
 
-        //drawing the shop buildings
-        Main.buildings[0].Draw(graphics, 0, 0, true);
-        Main.buildings[1].Draw(graphics, 1, 0, true);
+            //drawing dark square to indicate what is selected
+            if (a == (selected - 1)) {
+                graphics.setColor(new Color(61, 61, 61));
+                graphics.fillRect(shopCoordinates[i][a/ shopCoordinates.length].x - 30, shopCoordinates[i][a/ shopCoordinates.length].y - 30, 60, 60);
+            }
 
-        //drawing text of names
-        graphics.drawString(Main.buildings[0].name + " [" + Main.buildings[0].id + "]", shopCoordinates[0][0].x - 20, shopCoordinates[0][0].y - 30);
-        graphics.drawString(Main.buildings[1].name + " [" + Main.buildings[1].id + "]", shopCoordinates[1][0].x - 20, shopCoordinates[1][0].y - 30);
+            Main.buildings[a].Draw(graphics, i, a/shopCoordinates.length, true);
+
+            //abusing the fact that integers round down to get the y position of the buildings
+            graphics.setColor(Color.BLACK);
+            graphics.drawString(Main.buildings[a].name + " [" + Main.buildings[a].id + "]", shopCoordinates[i][a/shopCoordinates.length].x - 20, shopCoordinates[i][a/shopCoordinates.length].y - 35);
+            graphics.drawString(Main.buildings[a].cost + " gold", shopCoordinates[i][a/shopCoordinates.length].x - 20, shopCoordinates[i][a/shopCoordinates.length].y + 45);
+
+            i++;
+
+            if (i >= shopCoordinates.length) {
+                i = 0;
+            }
+        }
 
     }
 

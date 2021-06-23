@@ -6,12 +6,12 @@ import Game.Shop;
 
 import java.awt.*;
 
-public class Cannon extends Building {
+public class Sniper extends Building {
 
     int furthestPosition = 0;
     Entity furthestEntity = null;
 
-    public Cannon(int cost, int id, String name) {
+    public Sniper(int cost, int id, String name) {
         super(cost, id, name);
     }
 

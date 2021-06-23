@@ -2,7 +2,7 @@ package Game;
 
 import Buildings.Archer;
 import Buildings.Building;
-import Buildings.Cannon;
+import Buildings.Sniper;
 import Entities.Entity;
 import Graphics.Frame;
 import java.awt.*;
@@ -19,20 +19,22 @@ public class Main {
     public static Level level3 = new Level(new int[]{5,5,0});
     public static Level level4 = new Level(new int[]{0,8,0});
     public static Level level5 = new Level(new int[]{10,0,3});
-    public static Level[] levels = {level1,level2,level3,level4,level5};
+    public static Level level6 = new Level(new int[]{10,10,0});
+    public static Level[] levels = {level1,level2,level3,level4,level5,level6};
 
     public static int lives = 3;
     public static int gold = 100;
     public static int currentLevel = 0;
     public static int livingEnemies;
     public static long currentTime;
+    public static boolean menu;
 
     public static Entity[] warriors;
     public static Entity[] vikings;
     public static Entity[] golems;
     public static Entity[][] entities;
     public static Building[] buildings;
-    public static Shop shop = new Shop(1, false, new Dimension(500,400));
+    public static Shop shop = new Shop(1, false, new Dimension(600,350));
 
     public static void main(String[] args) {
 
@@ -40,8 +42,8 @@ public class Main {
 
         //filling buildings index with all the buildings
         Building archer = new Archer(30,1, "archer");
-        Building cannon = new Cannon(100, 2, "cannon");
-        buildings = new Building[]{archer, cannon};
+        Building sniper = new Sniper(100, 2, "sniper");
+        buildings = new Building[]{archer, sniper};
 
         //filling buildingInfo with defaults
         for (int x = 0; x < buildingInfo.length; x++) {
@@ -65,6 +67,9 @@ public class Main {
         //loading initial level
         levels[currentLevel].Load();
         livingEnemies = Arrays.stream(levels[currentLevel].enemies).sum();
+
+        //menu
+        menu = true;
 
         //game loop
         while (true) {

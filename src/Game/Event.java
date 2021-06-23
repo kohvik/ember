@@ -19,6 +19,11 @@ public class Event implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+
+        if (Main.menu) {
+            Main.menu = false;
+        }
+
         mousePosition.x = (mouseEvent.getX() / 100);
         mousePosition.y = (mouseEvent.getY() / 100);
 
@@ -54,6 +59,10 @@ public class Event implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+
+        if (Main.menu) {
+            Main.menu = false;
+        }
 
         recentKey = keyEvent.getKeyChar();
 

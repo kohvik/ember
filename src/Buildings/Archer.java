@@ -19,11 +19,11 @@ public class Archer extends Building {
 
         if (shopDraw) {
             graphics.setColor(new Color(19, 60, 121));
-            graphics.fillRect(Shop.shopCoordinates[x][y].x - 20, Shop.shopCoordinates[x][y].y - 20, 40, 40);
+            graphics.fillRect(Shop.shopCoordinates[x][y].x - 15, Shop.shopCoordinates[x][y].y - 15, 30, 30);
         }
         else {
             graphics.setColor(new Color(19, 60, 121));
-            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 20, Main.buildingInfo[x][y].coordinates.y - 20, 40, 40);
+            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 15, 30, 30);
         }
 
     }
