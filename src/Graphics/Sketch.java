@@ -84,6 +84,10 @@ public class Sketch extends JPanel {
             if (Main.shop.isOpen) {
                 Main.shop.Display(graphics);
             }
+            //sketching upgrades if upgrading
+            if (Main.upgrading) {
+                Main.upgradeMenu.Display(graphics);
+            }
         }
 
     }

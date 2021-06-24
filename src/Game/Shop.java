@@ -30,7 +30,11 @@ public class Shop {
 
     public void Select(char recentKey) {
         if (Main.shop.isOpen) {
-            selected = Character.getNumericValue(recentKey);
+            //parsing to make sure you cannot select a tower that does not exist
+            int parse = Character.getNumericValue(recentKey);
+            if (parse <= Main.buildings.length) {
+                selected = Character.getNumericValue(recentKey);
+            }
         }
     }
 
@@ -43,7 +47,8 @@ public class Shop {
                 if (mousePosition.x == 7 && mousePosition.y == 7) {
 
                     }
-                else {
+                //ensuring you cannot build 2 towers on one square
+                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied == 0){
                     Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
                     Main.gold -= Main.buildings[(selected - 1)].cost;
                 }
@@ -83,5 +88,7 @@ public class Shop {
         }
 
     }
+
+
 
 }

@@ -17,6 +17,7 @@ public abstract class Building {
     }
 
     public abstract void Draw(Graphics2D graphics, int x, int y, boolean shopDraw);
+    public abstract void DrawUpgrades(Graphics2D graphics, int x, int y);
     public abstract void doAttack(Graphics2D graphics, int x, int y);
 
 }

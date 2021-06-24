@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,11 +24,17 @@ public class Event implements MouseListener, KeyListener {
         if (Main.menu) {
             Main.menu = false;
         }
-
-        mousePosition.x = (mouseEvent.getX() / 100);
-        mousePosition.y = (mouseEvent.getY() / 100);
-
-        Main.shop.Purchase(mousePosition);
+        else {
+            mousePosition.x = (mouseEvent.getX() / 100);
+            mousePosition.y = (mouseEvent.getY() / 100);
+            if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
+                Main.shop.Purchase(mousePosition);
+            }
+            if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+                Main.upgrading = !Main.upgrading;
+                Main.upgradeMenu.setUpgradeLocation(mousePosition.x, mousePosition.y);
+            }
+        }
     }
 
     @Override
@@ -72,6 +79,9 @@ public class Event implements MouseListener, KeyListener {
         }
         else if (Main.shop.isOpen) {
             Main.shop.Select(recentKey);
+        }
+        else if (Main.upgrading) {
+
         }
     }
 

@@ -31,6 +31,10 @@ public class Sniper extends Building {
         }
     }
 
+    public void DrawUpgrades(Graphics2D graphics, int x, int y) {
+
+    }
+
     public void doAttack(Graphics2D graphics, int x, int y) {
 
         if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 3000 || Main.buildingInfo[x][y].repeat > 0) {
@@ -77,7 +81,3 @@ public class Sniper extends Building {
     }
 
 }
-
-
-
-

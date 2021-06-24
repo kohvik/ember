@@ -1,8 +1,6 @@
 package Game;
 
-import Buildings.Archer;
-import Buildings.Building;
-import Buildings.Sniper;
+import Buildings.*;
 import Entities.Entity;
 import Graphics.Frame;
 import java.awt.*;
@@ -28,12 +26,15 @@ public class Main {
     public static int livingEnemies;
     public static long currentTime;
     public static boolean menu;
+    public static boolean upgrading;
 
     public static Entity[] warriors;
     public static Entity[] vikings;
     public static Entity[] golems;
     public static Entity[][] entities;
     public static Building[] buildings;
+
+    public static UpgradeMenu upgradeMenu = new UpgradeMenu();
     public static Shop shop = new Shop(1, false, new Dimension(600,350));
 
     public static void main(String[] args) {
@@ -43,12 +44,15 @@ public class Main {
         //filling buildings index with all the buildings
         Building archer = new Archer(30,1, "archer");
         Building sniper = new Sniper(100, 2, "sniper");
-        buildings = new Building[]{archer, sniper};
+        Building mage = new Mage(60, 3, "mage");
+        buildings = new Building[]{archer, sniper, mage};
+
+        //upgrade stuffs
 
         //filling buildingInfo with defaults
         for (int x = 0; x < buildingInfo.length; x++) {
             for (int y = 0; y < buildingInfo[x].length; y++) {
-                buildingInfo[x][y] = new BuildingInfo(new Point(), 0,0, 0);
+                buildingInfo[x][y] = new BuildingInfo(new Point(), 0,0, 0, new int[2]);
             }
         }
 
@@ -89,7 +93,7 @@ public class Main {
             //refreshing the screen
             frame.sketch.repaint();
 
-            //using sleep function to set fps to 100
+            //using sleep function to set fps
             try {
                 TimeUnit.MILLISECONDS.sleep(15);
             } catch (Exception e) {System.out.println("could not perform sleep function");}
