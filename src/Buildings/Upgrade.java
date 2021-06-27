@@ -2,17 +2,13 @@ package Buildings;
 
 public class Upgrade {
 
-    int cost;
-    int id;
-    int path;
-    String name;
+    public int cost;
+    public int id;
 
-    public Upgrade(int cost, int id, int path, String name) {
+    public Upgrade(int cost, int id) {
 
         this.cost = cost;
         this.id = id;
-        this.path = path;
-        this.name = name;
 
     }
 

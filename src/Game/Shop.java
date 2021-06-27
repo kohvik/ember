@@ -9,7 +9,7 @@ public class Shop {
     public boolean isOpen;
     public Dimension shopSize;
 
-    public static Point[][] shopCoordinates = new Point[5][3];
+    public static Point[][] shopCoordinates = new Point[3][2];
 
     public void Establish() {
         for (int x = 0; x < shopCoordinates.length; x++) {

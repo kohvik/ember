@@ -1,7 +1,5 @@
 package Game;
 
-import Game.Main;
-
 import java.awt.*;
 
 public class UpgradeMenu {
@@ -12,6 +10,22 @@ public class UpgradeMenu {
     public void setUpgradeLocation(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void Purchase(int recentKey) {
+        int selected = Character.getNumericValue(recentKey);
+        if (selected == 1) {
+            if (Main.gold >= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackSpeed.cost) {
+                Main.buildingInfo[x][y].upgrades[0]++;
+                Main.gold -= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackSpeed.cost;
+            }
+        }
+        if (selected == 2) {
+            if (Main.gold >= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackDamage.cost) {
+                Main.buildingInfo[x][y].upgrades[1]++;
+                Main.gold -= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackDamage.cost;
+            }
+        }
     }
 
     public void Display(Graphics2D graphics) {

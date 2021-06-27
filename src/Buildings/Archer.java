@@ -11,12 +11,8 @@ public class Archer extends Building {
     int furthestPosition = 0;
     Entity furthestEntity = null;
 
-    Upgrade quiver = new Upgrade(50,1,1,"quiver");
-    Upgrade spikedArrows = new Upgrade(80, 1, 2, "spiked arrows");
-    Upgrade[] upgrades = new Upgrade[]{quiver, spikedArrows};
-
     public Archer(int cost, int id, String name) {
-        super(cost, id, name);
+        super(cost, id, name, new Upgrade(50, 1), new Upgrade(50, 2));
     }
 
     public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
@@ -32,19 +28,11 @@ public class Archer extends Building {
 
     }
 
-    public void DrawUpgrades(Graphics2D graphics, int x, int y) {
-        //accounting for upgrades
-        if (Main.buildingInfo[x][y].upgrades[0] == 1) {
-            graphics.setColor(new Color(255, 255, 255));
-            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
-        }
-    }
-
     public void doAttack(Graphics2D graphics, int x, int y) {
 
         //accounting for attack speed of 1 attack per second
 
-        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 1000 || Main.buildingInfo[x][y].repeat > 0) {
+        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 1000/((Main.buildingInfo[x][y].upgrades[0] + 1) * 1.3) || Main.buildingInfo[x][y].repeat > 0) {
 
             if (Main.buildingInfo[x][y].repeat > 0) {
                 Main.buildingInfo[x][y].repeat--;
@@ -75,7 +63,7 @@ public class Archer extends Building {
 
                 //accounting for damage done, only once per shot (hence only occurs for a single repeat value)
                 if (Main.buildingInfo[x][y].repeat == 6) {
-                    furthestEntity.health -= 20;
+                    furthestEntity.health -= 20 * ((Main.buildingInfo[x][y].upgrades[0] + 1) * 1.3);
                 }
 
             }

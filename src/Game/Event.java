@@ -81,7 +81,7 @@ public class Event implements MouseListener, KeyListener {
             Main.shop.Select(recentKey);
         }
         else if (Main.upgrading) {
-
+            Main.upgradeMenu.Purchase(recentKey);
         }
     }
 

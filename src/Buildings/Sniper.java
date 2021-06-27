@@ -12,7 +12,7 @@ public class Sniper extends Building {
     Entity furthestEntity = null;
 
     public Sniper(int cost, int id, String name) {
-        super(cost, id, name);
+        super(cost, id, name, new Upgrade(50, 1), new Upgrade(50, 2));
     }
 
     public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
@@ -29,10 +29,6 @@ public class Sniper extends Building {
             graphics.setColor(new Color(0, 0, 0));
             graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
         }
-    }
-
-    public void DrawUpgrades(Graphics2D graphics, int x, int y) {
-
     }
 
     public void doAttack(Graphics2D graphics, int x, int y) {
