@@ -12,7 +12,7 @@ public class Sniper extends Building {
     Entity furthestEntity = null;
 
     public Sniper(int cost, int id, String name) {
-        super(cost, id, name, new Upgrade(50, 1), new Upgrade(50, 2));
+        super(cost, id, name);
     }
 
     public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
@@ -33,7 +33,7 @@ public class Sniper extends Building {
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 
-        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > 3000 || Main.buildingInfo[x][y].repeat > 0) {
+        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > (4000 / ((Main.buildingInfo[x][y].upgradeLevel[0]+1) * 1.3)) || Main.buildingInfo[x][y].repeat > 0) {
 
             if (Main.buildingInfo[x][y].repeat > 0) {
                 Main.buildingInfo[x][y].repeat--;
@@ -53,8 +53,9 @@ public class Sniper extends Building {
                     if (Main.entities[a][b].position >= furthestPosition && Main.entities[a][b].survived) {
                         furthestPosition = Main.entities[a][b].position;
 
-                        if (Main.buildingInfo[x][y].repeat == 10)
+                        if (Main.buildingInfo[x][y].repeat == 10) {
                             furthestEntity = Main.entities[a][b];
+                        }
                     }
                 }
             }
@@ -67,13 +68,18 @@ public class Sniper extends Building {
 
                 //accounting for damage done
                 if (Main.buildingInfo[x][y].repeat == 10) {
-                    furthestEntity.health -= 100;
+                    furthestEntity.health -= 100 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3);
                 }
 
             }
 
         }
 
+    }
+
+    public void establishUpgrades(int x, int y) {
+        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(50, 1);
+        Main.buildingInfo[x][y].upgrades[1] = new Upgrade(50, 2);
     }
 
 }

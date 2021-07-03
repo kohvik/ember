@@ -15,15 +15,19 @@ public class UpgradeMenu {
     public void Purchase(int recentKey) {
         int selected = Character.getNumericValue(recentKey);
         if (selected == 1) {
-            if (Main.gold >= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackSpeed.cost) {
-                Main.buildingInfo[x][y].upgrades[0]++;
-                Main.gold -= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackSpeed.cost;
+            if (Main.gold >= Main.buildingInfo[x][y].upgrades[0].cost) {
+                Main.buildingInfo[x][y].upgradeLevel[0]++;
+                Main.gold -= Main.buildingInfo[x][y].upgrades[0].cost;
+                Main.buildingInfo[x][y].upgrades[0].cost *= 2;
+                Main.upgrading = false;
             }
         }
         if (selected == 2) {
-            if (Main.gold >= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackDamage.cost) {
-                Main.buildingInfo[x][y].upgrades[1]++;
-                Main.gold -= Main.buildings[Main.buildingInfo[x][y].occupied - 1].attackDamage.cost;
+            if (Main.gold >= Main.buildingInfo[x][y].upgrades[1].cost) {
+                Main.buildingInfo[x][y].upgradeLevel[1]++;
+                Main.gold -= Main.buildingInfo[x][y].upgrades[1].cost;
+                Main.buildingInfo[x][y].upgrades[1].cost *= 2;
+                Main.upgrading = false;
             }
         }
     }
@@ -39,6 +43,14 @@ public class UpgradeMenu {
         else {
             graphics.setColor(Color.BLACK);
             graphics.drawString(Main.buildings[Main.buildingInfo[x][y].occupied - 1].name + " upgrades", 360, 320);
+
+            graphics.drawString("upgrade attack speed [1]", 270, 360);
+            graphics.drawString("(" + Main.buildingInfo[x][y].upgrades[0].cost + " gold)", 270, 380);
+            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[0] + " gold)", 270, 400);
+
+            graphics.drawString("upgrade attack damage [2]", 410, 360);
+            graphics.drawString("(" + Main.buildingInfo[x][y].upgrades[1].cost + " gold)", 410, 380);
+            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[1] + " gold)", 410, 400);
         }
 
     }

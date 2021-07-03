@@ -52,7 +52,7 @@ public class Main {
         //filling buildingInfo with defaults
         for (int x = 0; x < buildingInfo.length; x++) {
             for (int y = 0; y < buildingInfo[x].length; y++) {
-                buildingInfo[x][y] = new BuildingInfo(new Point(), 0,0, 0, new int[2]);
+                buildingInfo[x][y] = new BuildingInfo(new Point(), 0,0, 0, new int[2], new Upgrade[2]);
             }
         }
 

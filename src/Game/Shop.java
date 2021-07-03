@@ -48,9 +48,10 @@ public class Shop {
 
                     }
                 //ensuring you cannot build 2 towers on one square
-                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied == 0){
+                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied == 0) {
                     Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
                     Main.gold -= Main.buildings[(selected - 1)].cost;
+                    Main.buildings[(selected - 1)].establishUpgrades(mousePosition.x, mousePosition.y);
                 }
             }
         }
