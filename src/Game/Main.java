@@ -21,7 +21,7 @@ public class Main {
     public static Level[] levels = {level1,level2,level3,level4,level5,level6};
 
     public static int lives = 3;
-    public static int gold = 100;
+    public static int gold = 500;
     public static int currentLevel = 0;
     public static int livingEnemies;
     public static long currentTime;
@@ -45,7 +45,8 @@ public class Main {
         Building archer = new Archer(30,1, "archer");
         Building sniper = new Sniper(100, 2, "sniper");
         Building mage = new Mage(60, 3, "mage");
-        buildings = new Building[]{archer, sniper, mage};
+        Building cannon = new Cannon(200, 4, "cannon");
+        buildings = new Building[]{archer, sniper, mage, cannon};
 
         //upgrade stuffs
 

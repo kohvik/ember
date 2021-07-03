@@ -25,11 +25,11 @@ public class Archer extends Building {
             graphics.setColor(new Color(19, 60, 121));
             graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 15, 30, 30);
             if (Main.buildingInfo[x][y].upgradeLevel[0] > 0) {
-                graphics.setColor(Color.BLUE);
+                graphics.setColor(new Color(132, 93, 31));
                 graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
             }
             if (Main.buildingInfo[x][y].upgradeLevel[1] > 0) {
-                graphics.setColor(new Color(168, 85, 27));
+                graphics.setColor(new Color(130, 42, 20));
                 graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 5, 30, 10);
             }
         }

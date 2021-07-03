@@ -33,7 +33,7 @@ public class Sniper extends Building {
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 
-        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > (4000 / ((Main.buildingInfo[x][y].upgradeLevel[0]+1) * 1.3)) || Main.buildingInfo[x][y].repeat > 0) {
+        if ((Main.currentTime - Main.buildingInfo[x][y].preAttackTime) > (3000 / ((Main.buildingInfo[x][y].upgradeLevel[0]+1) * 1.3)) || Main.buildingInfo[x][y].repeat > 0) {
 
             if (Main.buildingInfo[x][y].repeat > 0) {
                 Main.buildingInfo[x][y].repeat--;
@@ -45,8 +45,6 @@ public class Sniper extends Building {
                 furthestEntity = null;
                 furthestPosition = 0;
             }
-
-
 
             for (int a = 0; a < Main.entities.length; a++) {
                 for (int b = 0; b < Main.entities[a].length; b++) {
@@ -78,8 +76,8 @@ public class Sniper extends Building {
     }
 
     public void establishUpgrades(int x, int y) {
-        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(50, 1);
-        Main.buildingInfo[x][y].upgrades[1] = new Upgrade(50, 2);
+        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(80, 1);
+        Main.buildingInfo[x][y].upgrades[1] = new Upgrade(100, 2);
     }
 
 }

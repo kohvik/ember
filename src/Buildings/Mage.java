@@ -29,6 +29,14 @@ public class Mage extends Building {
             graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 20, Main.buildingInfo[x][y].coordinates.y - 20, 40, 40);
             graphics.setColor(new Color(0, 0, 0));
             graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
+            if (Main.buildingInfo[x][y].upgradeLevel[0] > 0) {
+                graphics.setColor(new Color(163, 117, 40));
+                graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
+            }
+            if (Main.buildingInfo[x][y].upgradeLevel[1] > 0) {
+                graphics.setColor(new Color(130, 42, 20));
+                graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 5, Main.buildingInfo[x][y].coordinates.y - 5, 10, 10);
+            }
         }
     }
 
@@ -78,9 +86,9 @@ public class Mage extends Building {
 
                 //accounting for damage done
                 if (Main.buildingInfo[x][y].repeat == 3) {
-                    furthestEntity.health -= 10;
+                    furthestEntity.health -= (7 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3));
                     if (secondEntity != null) {
-                        secondEntity.health -= 10;
+                        secondEntity.health -= (7 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3));
                     }
 
                 }
@@ -92,7 +100,7 @@ public class Mage extends Building {
     }
 
     public void establishUpgrades(int x, int y) {
-        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(50, 1);
+        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(70, 1);
         Main.buildingInfo[x][y].upgrades[1] = new Upgrade(50, 2);
     }
 
