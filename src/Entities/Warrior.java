@@ -16,6 +16,9 @@ public class Warrior extends Entity {
             if (position < 830) {
                 graphics.setColor(new Color(44, 95, 33));
                 graphics.fillOval(position,390,25,25);
+                //drawing health bar
+                graphics.setColor(Color.green);
+                graphics.fillRect(position, 390 + 30, (health*25)/100, 5);
                 position += speed;
             }
             else if (survived) {

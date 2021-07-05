@@ -9,6 +9,8 @@ public class Shop {
     public boolean isOpen;
     public Dimension shopSize;
 
+    private boolean selling;
+
     public static Point[][] shopCoordinates = new Point[3][2];
 
     public void Establish() {
@@ -31,22 +33,41 @@ public class Shop {
     public void Select(char recentKey) {
         if (Main.shop.isOpen) {
             //parsing to make sure you cannot select a tower that does not exist
+            if (recentKey == 'x') {
+                selling = true;
+                selected = 0;
+            }
             int parse = Character.getNumericValue(recentKey);
             if (parse <= Main.buildings.length) {
                 selected = Character.getNumericValue(recentKey);
+                selling = false;
             }
         }
     }
 
     public void Purchase(Point mousePosition) {
 
-        if (Main.gold >= Main.buildings[(selected - 1)].cost) {
+        if (selling) {
+            if (mousePosition.y < 3 || mousePosition.y > 4) {
+                //ensuring you can't build on the info
+                if (mousePosition.x == 7 && mousePosition.y == 7) {
+
+                }
+                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied != 0) {
+                    Main.gold += (Main.buildings[Main.buildingInfo[mousePosition.x][mousePosition.y].occupied - 1].cost)/2;
+                    Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = 0;
+                    Main.buildingInfo[mousePosition.x][mousePosition.y].upgradeLevel[0] = 0;
+                    Main.buildingInfo[mousePosition.x][mousePosition.y].upgradeLevel[1] = 0;
+                }
+            }
+        }
+        else if (Main.gold >= Main.buildings[(selected - 1)].cost) {
             //ensuring you can't build on the main path
             if (mousePosition.y < 3 || mousePosition.y > 4) {
                 //ensuring you can't build on the info
                 if (mousePosition.x == 7 && mousePosition.y == 7) {
 
-                    }
+                }
                 //ensuring you cannot build 2 towers on one square
                 else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied == 0) {
                     Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
@@ -55,6 +76,7 @@ public class Shop {
                 }
             }
         }
+
     }
 
     public void Display(Graphics2D graphics) {
@@ -87,6 +109,13 @@ public class Shop {
                 i = 0;
             }
         }
+        if (selling) {
+            graphics.setColor(new Color(61, 61, 61));
+            graphics.fillRect(shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 58, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y - 10, 130, 40);
+        }
+        //drawing sell function
+        graphics.setColor(Color.black);
+        graphics.drawString("sell building [press x]", shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 55, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y + 10);
 
     }
 

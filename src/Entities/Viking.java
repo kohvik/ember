@@ -18,6 +18,9 @@ public class Viking extends Entity {
                 graphics.fillOval(position,390,25,25);
                 graphics.setColor(new Color(73, 20, 80));
                 graphics.fillOval(position+6,396,12,12);
+
+                graphics.setColor(Color.green);
+                graphics.fillRect(position, 390 + 30, (health*25)/60, 5);
                 position += speed;
             }
             else if (survived) {

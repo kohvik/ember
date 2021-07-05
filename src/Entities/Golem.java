@@ -18,6 +18,9 @@ public class Golem extends Entity {
                 graphics.fillRect(position,390,25,25);
                 graphics.setColor(new Color(37, 69, 34));
                 graphics.fillRect(position+6,396,12,12);
+
+                graphics.setColor(Color.green);
+                graphics.fillRect(position, 390 + 30, (health*25)/250, 5);
                 position += speed;
             }
             else if (survived) {

@@ -25,8 +25,9 @@ public class Event implements MouseListener, KeyListener {
             Main.menu = false;
         }
         else {
-            mousePosition.x = (mouseEvent.getX() / 100);
-            mousePosition.y = (mouseEvent.getY() / 100);
+            mousePosition.x = (mouseEvent.getX() / 102);
+            mousePosition.y = (mouseEvent.getY() / 105);
+
             if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
                 Main.shop.Purchase(mousePosition);
             }

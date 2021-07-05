@@ -74,7 +74,7 @@ public class Cannon extends Building {
 
                         if (Main.buildingInfo[x][y].repeat == 8) {
 
-                            if (Main.entities[a][b].position > furthestEntity.position - 100)
+                            if (Main.entities[a][b].position > furthestEntity.position - 100 || Main.entities[a][b].position > furthestEntity.position + 100)
                                 Main.entities[a][b].health -= 100 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3);
                         }
                     }
