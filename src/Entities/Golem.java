@@ -1,43 +1,21 @@
 package Entities;
 
-import Game.Main;
+import Game.Loader;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Golem extends Entity {
 
+    static final BufferedImage sprite = Loader.loadAsset("/golem.png");
+    public static int maxHP = 250;
+
     public Golem(int health, int speed, int position, boolean survived) {
         super(health, speed,20, position, survived);
-
     }
 
-    public void Draw(Graphics2D graphics){
-        if (health > 0) {
-            if (position < 830) {
-                graphics.setColor(new Color(128, 128, 128));
-                graphics.fillRect(position,390,25,25);
-                graphics.setColor(new Color(37, 69, 34));
-                graphics.fillRect(position+6,396,12,12);
-
-                graphics.setColor(Color.green);
-                graphics.fillRect(position, 390 + 30, (health*25)/250, 5);
-                position += speed;
-            }
-            else if (survived) {
-                survived = false;
-                Main.lives--;
-                Main.livingEnemies--;
-            }
-
-        }
-        else if (survived){
-
-            Main.gold += value;
-            survived = false;
-            Main.livingEnemies--;
-
-        }
-
+    public void Update(Graphics2D graphics){
+        Draw(graphics, sprite, maxHP);
     }
 
 }

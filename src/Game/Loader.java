@@ -12,9 +12,17 @@ public class Loader {
 
             return ImageIO.read(Objects.requireNonNull(Loader.class.getResourceAsStream(imageName)));
 
-        } catch (Exception e) {System.out.println("missing asset");}
+        } catch (Exception e) {System.out.println("missing " + imageName.substring(1));}
 
         return null;
+
+    }
+
+    public static void loadSaveFile() {
+
+    }
+
+    public static void SaveGame() {
 
     }
 

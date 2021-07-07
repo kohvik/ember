@@ -1,40 +1,27 @@
 package Buildings;
 
 import Entities.*;
+import Game.Loader;
 import Game.Main;
-import Game.Shop;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Archer extends Building {
 
-    int furthestPosition = 0;
-    Entity furthestEntity = null;
+    BufferedImage sprite = Loader.loadAsset("/archer.png");
+
 
     public Archer(int cost, int id, String name) {
         super(cost, id, name);
     }
 
-    public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
-
-        if (shopDraw) {
-            graphics.setColor(new Color(19, 60, 121));
-            graphics.fillRect(Shop.shopCoordinates[x][y].x - 15, Shop.shopCoordinates[x][y].y - 15, 30, 30);
-        } else {
-            //drawing base archer
-            graphics.setColor(new Color(19, 60, 121));
-            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 15, 30, 30);
-            if (Main.buildingInfo[x][y].upgradeLevel[0] > 0) {
-                graphics.setColor(new Color(132, 93, 31));
-                graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
-            }
-            if (Main.buildingInfo[x][y].upgradeLevel[1] > 0) {
-                graphics.setColor(new Color(130, 42, 20));
-                graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 5, 30, 10);
-            }
-        }
-
+    public void Update(Graphics2D graphics, int x, int y, boolean shopDraw) {
+        Draw(graphics, sprite, x, y, shopDraw);
     }
+
+    int furthestPosition = 0;
+    Entity furthestEntity = null;
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 

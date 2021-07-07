@@ -25,19 +25,19 @@ public class Level {
         //loading warriors
         Main.warriors = new Entity[this.enemies[0]];
         for (int i = 0; i < Main.warriors.length; i++) {
-            Main.warriors[i] = new Warrior(100, 1, lastEnemyPosition, true);
+            Main.warriors[i] = new Warrior(Warrior.maxHP, 1, lastEnemyPosition, true);
             lastEnemyPosition -= 50;
         }
 
         //loading vikings
         for (int i = 0; i < Main.vikings.length; i++) {
-            Main.vikings[i] = new Viking(60, 2, lastEnemyPosition, true);
+            Main.vikings[i] = new Viking(Viking.maxHP, 2, lastEnemyPosition, true);
             lastEnemyPosition -= 50;
         }
 
         //loading golems
         for (int i = 0; i < Main.golems.length; i++) {
-            Main.golems[i] = new Golem(250, 1, lastEnemyPosition, true);
+            Main.golems[i] = new Golem(Golem.maxHP, 1, lastEnemyPosition, true);
             lastEnemyPosition -= 50;
         }
 

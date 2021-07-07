@@ -1,35 +1,27 @@
 package Buildings;
 
 import Entities.*;
+import Game.Loader;
 import Game.Main;
-import Game.Shop;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Cannon extends Building {
 
-    int furthestPosition = 0;
-    Entity furthestEntity = null;
+    BufferedImage sprite = Loader.loadAsset("/cannon.png");
 
     public Cannon(int cost, int id, String name) {
         super(cost, id, name);
     }
 
-    public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
-
-        if (shopDraw) {
-            graphics.setColor(new Color(14, 61, 38));
-            graphics.fillRect(Shop.shopCoordinates[x][y].x - 25, Shop.shopCoordinates[x][y].y - 25, 50, 50);
-            graphics.setColor(new Color(42, 5, 5));
-            graphics.fillRect(Shop.shopCoordinates[x][y].x - 15, Shop.shopCoordinates[x][y].y - 10, 30, 20);
-        }
-        else {
-            graphics.setColor(new Color(14, 61, 38));
-            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 25, Main.buildingInfo[x][y].coordinates.y - 25, 50, 50);
-            graphics.setColor(new Color(42, 5, 5));
-            graphics.fillRect(Main.buildingInfo[x][y].coordinates.x - 15, Main.buildingInfo[x][y].coordinates.y - 10, 30, 20);
-        }
+    public void Update(Graphics2D graphics, int x, int y, boolean shopDraw) {
+        Draw(graphics, sprite, x, y, shopDraw);
     }
+
+    int furthestPosition = 0;
+    Entity furthestEntity = null;
+
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 

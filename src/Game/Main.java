@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    public static boolean menu = true;
+
     public static BuildingInfo[][] buildingInfo = new BuildingInfo[8][8];
 
     //establishing levels
@@ -25,7 +27,6 @@ public class Main {
     public static int currentLevel = 0;
     public static int livingEnemies;
     public static long currentTime;
-    public static boolean menu;
     public static boolean upgrading;
 
     public static Entity[] warriors;
@@ -72,9 +73,6 @@ public class Main {
         //loading initial level
         levels[currentLevel].Load();
         livingEnemies = Arrays.stream(levels[currentLevel].enemies).sum();
-
-        //menu
-        menu = true;
 
         //game loop
         while (true) {

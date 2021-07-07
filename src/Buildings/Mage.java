@@ -1,44 +1,30 @@
 package Buildings;
 
 import Entities.*;
+import Game.Loader;
 import Game.Main;
 import Game.Shop;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Mage extends Building {
 
-    int furthestPosition = 0;
-    Entity furthestEntity = null;
-    Entity secondEntity = null;
+    BufferedImage sprite = Loader.loadAsset("/mage.png");
+
 
     public Mage(int cost, int id, String name) {
         super(cost, id, name);
     }
 
-    public void Draw(Graphics2D graphics, int x, int y, boolean shopDraw) {
-
-        if (shopDraw) {
-            graphics.setColor(new Color(6, 114, 18));
-            graphics.fillOval(Shop.shopCoordinates[x][y].x - 20, Shop.shopCoordinates[x][y].y - 20, 40, 40);
-            graphics.setColor(new Color(0, 0, 0));
-            graphics.fillOval(Shop.shopCoordinates[x][y].x - 10, Shop.shopCoordinates[x][y].y - 10, 20, 20);
-        }
-        else {
-            graphics.setColor(new Color(6, 114, 18));
-            graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 20, Main.buildingInfo[x][y].coordinates.y - 20, 40, 40);
-            graphics.setColor(new Color(0, 0, 0));
-            graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
-            if (Main.buildingInfo[x][y].upgradeLevel[0] > 0) {
-                graphics.setColor(new Color(163, 117, 40));
-                graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 10, Main.buildingInfo[x][y].coordinates.y - 10, 20, 20);
-            }
-            if (Main.buildingInfo[x][y].upgradeLevel[1] > 0) {
-                graphics.setColor(new Color(130, 42, 20));
-                graphics.fillOval(Main.buildingInfo[x][y].coordinates.x - 5, Main.buildingInfo[x][y].coordinates.y - 5, 10, 10);
-            }
-        }
+    public void Update(Graphics2D graphics, int x, int y, boolean shopDraw) {
+        Draw(graphics, sprite, x, y, shopDraw);
     }
+
+
+    int furthestPosition = 0;
+    Entity furthestEntity = null;
+    Entity secondEntity = null;
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 

@@ -1,6 +1,5 @@
 package Game;
 
-import Buildings.*;
 import java.awt.*;
 
 public class Shop {
@@ -11,7 +10,7 @@ public class Shop {
 
     private boolean selling;
 
-    public static Point[][] shopCoordinates = new Point[3][2];
+    public static Point[][] shopCoordinates = new Point[5][3];
 
     public void Establish() {
         for (int x = 0; x < shopCoordinates.length; x++) {
@@ -96,7 +95,7 @@ public class Shop {
                 graphics.fillRect(shopCoordinates[i][a/ shopCoordinates.length].x - 30, shopCoordinates[i][a/ shopCoordinates.length].y - 30, 60, 60);
             }
 
-            Main.buildings[a].Draw(graphics, i, a/shopCoordinates.length, true);
+            Main.buildings[a].Update(graphics, i, a/shopCoordinates.length, true);
 
             //abusing the fact that integers round down to get the y position of the buildings
             graphics.setColor(Color.BLACK);
