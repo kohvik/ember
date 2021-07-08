@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Archer extends Building {
 
-    BufferedImage sprite = Loader.loadAsset("/archer.png");
+    BufferedImage sprite = Loader.loadAsset("/buildings/archer.png");
 
 
     public Archer(int cost, int id, String name) {

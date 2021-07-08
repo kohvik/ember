@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Cannon extends Building {
 
-    BufferedImage sprite = Loader.loadAsset("/cannon.png");
+    BufferedImage sprite = Loader.loadAsset("/buildings/cannon.png");
 
     public Cannon(int cost, int id, String name) {
         super(cost, id, name);

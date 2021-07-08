@@ -3,14 +3,13 @@ package Buildings;
 import Entities.*;
 import Game.Loader;
 import Game.Main;
-import Game.Shop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Sniper extends Building {
 
-    BufferedImage sprite = Loader.loadAsset("/sniper.png");
+    BufferedImage sprite = Loader.loadAsset("/buildings/sniper.png");
 
     public Sniper(int cost, int id, String name) {
         super(cost, id, name);

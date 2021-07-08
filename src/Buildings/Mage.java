@@ -3,14 +3,13 @@ package Buildings;
 import Entities.*;
 import Game.Loader;
 import Game.Main;
-import Game.Shop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Mage extends Building {
 
-    BufferedImage sprite = Loader.loadAsset("/mage.png");
+    BufferedImage sprite = Loader.loadAsset("/buildings/mage.png");
 
 
     public Mage(int cost, int id, String name) {

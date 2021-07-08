@@ -20,7 +20,7 @@ public class Sketch extends JPanel {
 
         else {
             //refreshing the screen with full white
-            graphics.setColor(new Color(168, 102, 102));
+            graphics.setColor(new Color(83, 77, 77));
             graphics.fillRect(0, 0, 840, 820);
 
             //draws placement squares
@@ -66,7 +66,7 @@ public class Sketch extends JPanel {
                 }
             }
             //draws nice spot for info
-            graphics.setColor(new Color(168, 102, 102));
+            graphics.setColor(new Color(83, 77, 77));
             graphics.fillRect(Main.buildingInfo[7][7].coordinates.x - 50,Main.buildingInfo[7][7].coordinates.y - 50, 100, 100);
             //sketching info
             graphics.setColor(Color.BLACK);

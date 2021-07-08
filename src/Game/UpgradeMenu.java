@@ -33,7 +33,7 @@ public class UpgradeMenu {
     }
 
     public void Display(Graphics2D graphics) {
-        graphics.setColor(new Color(97, 97, 97));
+        graphics.setColor(new Color(136, 201, 110));
         //accounts also for the space required for upgrades text
         graphics.fillRect(410 - 150,300, 300,  150 + 20);
         if (Main.buildingInfo[x][y].occupied == 0) {
@@ -46,11 +46,11 @@ public class UpgradeMenu {
 
             graphics.drawString("upgrade attack speed [1]", 270, 360);
             graphics.drawString("(" + Main.buildingInfo[x][y].upgrades[0].cost + " gold)", 270, 380);
-            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[0] + " gold)", 270, 400);
+            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[0], 270, 400);
 
             graphics.drawString("upgrade attack damage [2]", 410, 360);
             graphics.drawString("(" + Main.buildingInfo[x][y].upgrades[1].cost + " gold)", 410, 380);
-            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[1] + " gold)", 410, 400);
+            graphics.drawString("current level: " + Main.buildingInfo[x][y].upgradeLevel[1], 410, 400);
         }
 
     }

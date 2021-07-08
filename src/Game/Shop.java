@@ -79,7 +79,7 @@ public class Shop {
     }
 
     public void Display(Graphics2D graphics) {
-        graphics.setColor(new Color(97, 97, 97));
+        graphics.setColor(new Color(96, 96, 96));
         //here there is -20 on the y and + 20 later in the equation to account for space to add "shop" text
         graphics.fillRect(410 - (shopSize.width/2),400 - (shopSize.height/2), shopSize.width, shopSize.height + 20);
         graphics.setColor(Color.BLACK);

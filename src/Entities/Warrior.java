@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Warrior extends Entity {
 
-    static final BufferedImage sprite = Loader.loadAsset("/warrior.png");
+    static final BufferedImage sprite = Loader.loadAsset("/entities/warrior.png");
     public static int maxHP = 100;
 
     public Warrior(int health, int speed, int position, boolean survived) {
