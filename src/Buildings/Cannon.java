@@ -54,11 +54,11 @@ public class Cannon extends Building {
                 //drawing the shot
                 graphics.setColor(new Color(0, 125, 22));
                 graphics.setStroke(new BasicStroke(Main.buildingInfo[x][y].repeat * 3));
-                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position ,390);
+                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position + 20,390 + 20);
                 graphics.setColor(new Color(134, 0, 3));
-                graphics.fillOval(furthestEntity.position - (20 * Main.buildingInfo[x][y].repeat)/2, 390 - (20 * Main.buildingInfo[x][y].repeat)/2, 20 * Main.buildingInfo[x][y].repeat, 20 * Main.buildingInfo[x][y].repeat);
-                graphics.setColor(new Color(205, 176, 0));
-                graphics.fillOval(furthestEntity.position - (10 * Main.buildingInfo[x][y].repeat)/2, 390 - (10 * Main.buildingInfo[x][y].repeat)/2, 10 * Main.buildingInfo[x][y].repeat, 10 * Main.buildingInfo[x][y].repeat);
+                graphics.fillOval(furthestEntity.position - (20 * Main.buildingInfo[x][y].repeat)/2 + 20, 390 - (20 * Main.buildingInfo[x][y].repeat)/2 + 20, 20 * Main.buildingInfo[x][y].repeat, 20 * Main.buildingInfo[x][y].repeat);
+                graphics.setColor(new Color(118, 103, 0));
+                graphics.fillOval(furthestEntity.position - (10 * Main.buildingInfo[x][y].repeat)/2 + 20, 390 - (10 * Main.buildingInfo[x][y].repeat)/2 + 20, 10 * Main.buildingInfo[x][y].repeat, 10 * Main.buildingInfo[x][y].repeat);
 
                 //accounting for damage done
                 for (int a = 0; a < Main.entities.length; a++) {

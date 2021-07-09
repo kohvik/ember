@@ -19,8 +19,8 @@ public class Sniper extends Building {
         Draw(graphics, sprite, x, y, shopDraw);
     }
 
-    int furthestPosition = 0;
-    Entity furthestEntity = null;
+    int highestHp = 0;
+    Entity healthiestEntity = null;
 
     public void doAttack(Graphics2D graphics, int x, int y) {
 
@@ -33,31 +33,31 @@ public class Sniper extends Building {
             else {
                 Main.buildingInfo[x][y].preAttackTime = Main.currentTime;
                 Main.buildingInfo[x][y].repeat = 10;
-                furthestEntity = null;
-                furthestPosition = 0;
+                healthiestEntity = null;
+                highestHp = 0;
             }
 
             for (int a = 0; a < Main.entities.length; a++) {
                 for (int b = 0; b < Main.entities[a].length; b++) {
-                    if (Main.entities[a][b].position >= furthestPosition && Main.entities[a][b].survived) {
-                        furthestPosition = Main.entities[a][b].position;
+                    if (Main.entities[a][b].health >= highestHp && Main.entities[a][b].survived && Main.entities[a][b].position > 0) {
+                        highestHp = Main.entities[a][b].health;
 
                         if (Main.buildingInfo[x][y].repeat == 10) {
-                            furthestEntity = Main.entities[a][b];
+                            healthiestEntity = Main.entities[a][b];
                         }
                     }
                 }
             }
 
-            if (furthestEntity != null) {
+            if (healthiestEntity != null) {
                 //drawing the shot
-                graphics.setColor(new Color(97, 144, 253));
+                graphics.setColor(new Color(151, 184, 255));
                 graphics.setStroke(new BasicStroke(Main.buildingInfo[x][y].repeat * 2));
-                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position ,390);
+                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, healthiestEntity.position + 20,390 + 20);
 
                 //accounting for damage done
                 if (Main.buildingInfo[x][y].repeat == 10) {
-                    furthestEntity.health -= 100 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3);
+                    healthiestEntity.health -= 100 * ((Main.buildingInfo[x][y].upgradeLevel[1]+1) * 1.3);
                 }
 
             }

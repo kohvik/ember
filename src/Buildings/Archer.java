@@ -55,7 +55,7 @@ public class Archer extends Building {
                 //drawing the shot
                 graphics.setColor(new Color(194, 158, 73));
                 graphics.setStroke(new BasicStroke(Main.buildingInfo[x][y].repeat * 2));
-                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position, 390);
+                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position + 20,390 + 20);
 
                 //accounting for damage done, only once per shot (hence only occurs for a single repeat value)
                 if (Main.buildingInfo[x][y].repeat == 6) {

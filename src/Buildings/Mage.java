@@ -64,9 +64,9 @@ public class Mage extends Building {
                 graphics.setColor(new Color(58, 38, 229));
                 graphics.setStroke(new BasicStroke(Main.buildingInfo[x][y].repeat * 3));
 
-                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position,390);
+                graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, furthestEntity.position + 20,390 + 20);
                 if (secondEntity != null) {
-                    graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, secondEntity.position,390);
+                    graphics.drawLine(Main.buildingInfo[x][y].coordinates.x, Main.buildingInfo[x][y].coordinates.y, secondEntity.position + 20,390 + 20);
                 }
 
                 //accounting for damage done
