@@ -24,4 +24,12 @@ public class BuildingInfo {
 
     }
 
+    public void setDefault() {
+        occupied = 0;
+        upgradeLevel[0] = 0;
+        upgradeLevel[1] = 0;
+        upgrades[0] = new Upgrade(0,0);
+        upgrades[1] = new Upgrade(0,0);
+    }
+
 }

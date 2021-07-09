@@ -1,6 +1,6 @@
 package Graphics;
 
-import Game.*;
+import Game.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +10,16 @@ public class Sketch extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
 
+
         //converting g to a graphics2d type
         Graphics2D graphics = (Graphics2D) g;
 
-        //drawing menu if in the menu
-        if (Main.menu) {
-            DrawMenu(graphics);
+        if (Main.menuScene == 1) {
+            Main.menu.drawMainMenu(graphics);
         }
-
+        else if (Main.menuScene == 2) {
+            Main.menu.drawLoadingMessage(graphics);
+        }
         else {
             //refreshing the screen with full white
             graphics.setColor(new Color(83, 77, 77));
@@ -52,7 +54,9 @@ public class Sketch extends JPanel {
                 for (int i = 0; i < Main.golems.length; i++) {
                     Main.golems[i].Update(graphics);
                 }
-            } catch (Exception e) {System.out.println("taylor did his job.");}
+            } catch (Exception e) {
+                System.out.println("taylor did his job.");
+            }
 
 
             //sketching towers and their attacks by iterating through occupied
@@ -67,19 +71,19 @@ public class Sketch extends JPanel {
             }
             //draws nice spot for info
             graphics.setColor(new Color(83, 77, 77));
-            graphics.fillRect(Main.buildingInfo[7][7].coordinates.x - 50,Main.buildingInfo[7][7].coordinates.y - 50, 100, 100);
+            graphics.fillRect(Main.buildingInfo[7][7].coordinates.x - 50, Main.buildingInfo[7][7].coordinates.y - 50, 100, 100);
             //sketching info
             graphics.setColor(Color.BLACK);
-            graphics.drawString("gold: " + (Main.gold), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 30);
-            graphics.drawString("level: " + (Main.currentLevel + 1), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 10);
+            graphics.drawString("gold: " + (Main.gold), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 35);
+            graphics.drawString("level: " + (Main.currentLevel + 1), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 15);
             if (Main.lives > 0) {
-                graphics.drawString("lives: " + (Main.lives), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 10);
-            }
-            else {
-                graphics.drawString("lives: 0", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 10);
+                graphics.drawString("lives: " + (Main.lives), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 5);
+            } else {
+                graphics.drawString("lives: 0", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 5);
                 DeathMessage(graphics);
             }
-            graphics.drawString("[o] - open shop", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 30);
+            graphics.drawString("[o] - open shop", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 25);
+            graphics.drawString("[m] - open menu", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 45);
 
             //sketching the shop if it's open
             if (Main.shop.isOpen) {
@@ -89,27 +93,25 @@ public class Sketch extends JPanel {
             if (Main.upgrading) {
                 Main.upgradeMenu.Display(graphics);
             }
+            //sketching in game menu if it's open
+            if (Main.menuScene == 3) {
+                Main.menu.drawInGameMenu(graphics);
+            }
         }
-
     }
+
+
 
     public void DeathMessage(Graphics2D graphics) {
-        graphics.setColor(new Color(0,0,0,150));
-        graphics.fillRect(0,0,820,840);
-        graphics.setColor(new Color(111, 48, 48));
-        graphics.fillRect(205,350,410,100);
-        graphics.setColor(Color.WHITE);
-        graphics.drawString("you died!",370,400);
-
-    }
-
-    public void DrawMenu(Graphics2D graphics) {
-        graphics.setColor(new Color(0, 57, 35));
+        graphics.setColor(new Color(0, 0, 0, 150));
         graphics.fillRect(0, 0, 820, 840);
+        graphics.setColor(new Color(111, 48, 48));
+        graphics.fillRect(205, 350, 410, 100);
         graphics.setColor(Color.WHITE);
-        graphics.drawString("welcome to ember!", 350, 300);
-        graphics.drawString("press any button to begin.", 335, 500);
+        graphics.drawString("you died!", 370, 400);
 
     }
+
+
 
 }

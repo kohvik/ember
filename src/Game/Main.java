@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static boolean menu = true;
+    public static int menuScene = 1;
 
     public static BuildingInfo[][] buildingInfo = new BuildingInfo[8][8];
 
@@ -23,7 +23,7 @@ public class Main {
     public static Level[] levels = {level1,level2,level3,level4,level5,level6};
 
     public static int lives = 3;
-    public static int gold = 500;
+    public static int gold = 100;
     public static int currentLevel = 0;
     public static int livingEnemies;
     public static long currentTime;
@@ -35,6 +35,7 @@ public class Main {
     public static Entity[][] entities;
     public static Building[] buildings;
 
+    public static Menu menu = new Menu();
     public static UpgradeMenu upgradeMenu = new UpgradeMenu();
     public static Shop shop = new Shop(1, false, new Dimension(600,350));
 
@@ -55,15 +56,8 @@ public class Main {
         for (int x = 0; x < buildingInfo.length; x++) {
             for (int y = 0; y < buildingInfo[x].length; y++) {
                 buildingInfo[x][y] = new BuildingInfo(new Point(), 0,0, 0, new int[2], new Upgrade[2]);
-            }
-        }
-
-        //sets values for all coordinates in the center of each square.
-        for (int x = 0; x < buildingInfo.length; x++) {
-            for (int y = 0; y < buildingInfo[x].length; y++) {
-
                 buildingInfo[x][y].coordinates = new Point(((x+1)*100-50),((y+1)*100-50));
-
+                buildingInfo[x][y].setDefault();
             }
         }
 

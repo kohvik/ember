@@ -54,9 +54,7 @@ public class Shop {
                 }
                 else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied != 0) {
                     Main.gold += (Main.buildings[Main.buildingInfo[mousePosition.x][mousePosition.y].occupied - 1].cost)/2;
-                    Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = 0;
-                    Main.buildingInfo[mousePosition.x][mousePosition.y].upgradeLevel[0] = 0;
-                    Main.buildingInfo[mousePosition.x][mousePosition.y].upgradeLevel[1] = 0;
+                    Main.buildingInfo[mousePosition.x][mousePosition.y].setDefault();
                 }
             }
         }
@@ -110,11 +108,11 @@ public class Shop {
         }
         if (selling) {
             graphics.setColor(new Color(61, 61, 61));
-            graphics.fillRect(shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 58, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y - 10, 130, 40);
+            graphics.fillRect(shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 58, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y - 10, 70, 40);
         }
         //drawing sell function
         graphics.setColor(Color.black);
-        graphics.drawString("sell building [press x]", shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 55, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y + 10);
+        graphics.drawString("sell [press x]", shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].x - 55, shopCoordinates[shopCoordinates.length - 1][shopCoordinates[0].length - 1].y + 10);
 
     }
 
