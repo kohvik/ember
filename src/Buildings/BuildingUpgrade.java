@@ -3,12 +3,12 @@ package Buildings;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-public class Upgrade {
+public class BuildingUpgrade {
 
     public int cost;
     public int id;
 
-    public Upgrade(int cost, int id) {
+    public BuildingUpgrade(int cost, int id) {
 
         this.cost = cost;
         this.id = id;

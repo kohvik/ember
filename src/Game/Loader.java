@@ -49,7 +49,7 @@ public class Loader {
                 }
             }
 
-            Main.levels[Main.currentLevel].Load();
+            Main.levels[Main.currentLevel].load();
 
             scanner.close();
 

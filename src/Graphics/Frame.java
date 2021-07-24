@@ -7,7 +7,7 @@ import Game.Event;
 public class Frame extends JFrame {
 
     public Sketch sketch = new Sketch();
-    public Event event = new Event(new Point(), '0');
+    public Event event = new Event(new Point(), '0', '0');
 
     public Frame() {
 
@@ -21,6 +21,7 @@ public class Frame extends JFrame {
         add(sketch);
         addMouseListener(event);
         addKeyListener(event);
+        addMouseMotionListener(event);
 
     }
 }

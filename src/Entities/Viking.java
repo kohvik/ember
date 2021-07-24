@@ -14,7 +14,7 @@ public class Viking extends Entity {
         super(health, speed, 10, position, survived);
     }
 
-    public void Update(Graphics2D graphics){
-        Draw(graphics, sprite, maxHP);
+    public void update(Graphics2D graphics){
+        draw(graphics, sprite, maxHP);
     }
 }

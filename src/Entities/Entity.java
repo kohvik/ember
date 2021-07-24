@@ -23,9 +23,9 @@ public abstract class Entity {
 
     }
 
-    public abstract void Update(Graphics2D graphics);
+    public abstract void update(Graphics2D graphics);
 
-    protected void Draw(Graphics2D graphics, BufferedImage sprite, int maxHP) {
+    protected void draw(Graphics2D graphics, BufferedImage sprite, int maxHP) {
         if (health > 0) {
             if (position < 830) {
 
@@ -50,6 +50,24 @@ public abstract class Entity {
             Main.livingEnemies--;
 
         }
+    }
+
+    public Entity getNearestNeighbour() {
+        int closestDistance = 1000;
+        Entity closestEntity = null;
+
+        for (int a = 0; a < Main.entities.length; a++) {
+            for (int b = 0; b < Main.entities[a].length; b++) {
+                if (closestDistance > (int) Math.abs(Main.entities[a][b].position - position) &&
+                        Main.entities[a][b].survived && Main.entities[a][b].position > 0 &&
+                        Main.entities[a][b] != this) {
+                    closestEntity = Main.entities[a][b];
+                    closestDistance = (int) Math.abs(Main.entities[a][b].position - position);
+                }
+            }
+        }
+
+        return closestEntity;
     }
 
 }

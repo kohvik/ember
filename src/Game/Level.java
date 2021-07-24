@@ -15,7 +15,7 @@ public class Level {
 
     }
 
-    public void Load() {
+    public void load() {
         int lastEnemyPosition = -500;
 
         Main.warriors = new Entity[this.enemies[0]];

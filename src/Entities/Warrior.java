@@ -14,8 +14,8 @@ public class Warrior extends Entity {
         super(health, speed,5, position, survived);
     }
 
-    public void Update(Graphics2D graphics){
-        Draw(graphics, sprite, maxHP);
+    public void update(Graphics2D graphics){
+        draw(graphics, sprite, maxHP);
     }
 
 }

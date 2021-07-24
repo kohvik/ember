@@ -7,6 +7,10 @@ import java.awt.*;
 
 public class Sketch extends JPanel {
 
+    public void refresh() {
+        repaint();
+    }
+
     @Override
     public void paintComponent(Graphics g) {
 
@@ -22,7 +26,7 @@ public class Sketch extends JPanel {
         }
         else {
             //refreshing the screen with full white
-            graphics.setColor(new Color(83, 77, 77));
+            graphics.setColor(new Color(45, 45, 45));
             graphics.fillRect(0, 0, 840, 820);
 
             //draws placement squares
@@ -37,22 +41,19 @@ public class Sketch extends JPanel {
             }
 
             //draws main path for enemies
-            graphics.setColor(new Color(76, 46, 50));
-            graphics.fillRect(Main.buildingInfo[0][3].coordinates.x - 50, Main.buildingInfo[0][3].coordinates.y - 45, 820, 190);
             graphics.setColor(new Color(0, 0, 0));
-            graphics.drawLine(Main.buildingInfo[0][3].coordinates.x - 50, Main.buildingInfo[0][3].coordinates.y - 45, Main.buildingInfo[7][3].coordinates.x + 80, Main.buildingInfo[0][3].coordinates.y - 45);
-            graphics.drawLine(Main.buildingInfo[0][5].coordinates.x - 50, Main.buildingInfo[0][5].coordinates.y - 55, Main.buildingInfo[7][5].coordinates.x + 80, Main.buildingInfo[0][5].coordinates.y - 55);
+            graphics.fillRect(Main.buildingInfo[0][3].coordinates.x - 50, Main.buildingInfo[0][3].coordinates.y - 45, 820, 190);
 
             //sketching entities
             try {
                 for (int i = 0; i < Main.warriors.length; i++) {
-                    Main.warriors[i].Update(graphics);
+                    Main.warriors[i].update(graphics);
                 }
                 for (int i = 0; i < Main.vikings.length; i++) {
-                    Main.vikings[i].Update(graphics);
+                    Main.vikings[i].update(graphics);
                 }
                 for (int i = 0; i < Main.golems.length; i++) {
-                    Main.golems[i].Update(graphics);
+                    Main.golems[i].update(graphics);
                 }
             } catch (Exception e) {
                 System.out.println("taylor did his job.");
@@ -69,25 +70,36 @@ public class Sketch extends JPanel {
                         }
                 }
             }
+
+            //updating player and respective elements (projectiles, etc)
+            Main.player.update(graphics);
+
             //draws nice spot for info
-            graphics.setColor(new Color(83, 77, 77));
+            graphics.setColor(new Color(45, 45, 45));
             graphics.fillRect(Main.buildingInfo[7][7].coordinates.x - 50, Main.buildingInfo[7][7].coordinates.y - 50, 100, 100);
             //sketching info
-            graphics.setColor(Color.BLACK);
-            graphics.drawString("gold: " + (Main.gold), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 35);
-            graphics.drawString("level: " + (Main.currentLevel + 1), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 15);
+            graphics.setColor(Color.WHITE);
+
+            graphics.drawString("level: " + (Main.currentLevel + 1), Main.buildingInfo[7][3].coordinates.x - 20, Main.buildingInfo[7][4].coordinates.y - 60);
             if (Main.lives > 0) {
-                graphics.drawString("lives: " + (Main.lives), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 5);
+                graphics.drawString("lives: " + (Main.lives), Main.buildingInfo[7][4].coordinates.x - 20, Main.buildingInfo[7][4].coordinates.y - 40);
             } else {
-                graphics.drawString("lives: 0", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 5);
-                DeathMessage(graphics);
+                graphics.drawString("lives: 0", Main.buildingInfo[7][4].coordinates.x - 20, Main.buildingInfo[7][4].coordinates.y - 40);
+                deathMessage(graphics);
             }
-            graphics.drawString("[o] - open shop", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 25);
-            graphics.drawString("[m] - open menu", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 45);
+            graphics.drawString("gold: " + (Main.gold), Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 35);
+            graphics.drawString("t - shop", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y - 15);
+            graphics.drawString("o - buildings", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 5);
+            graphics.drawString("v - upgrades", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 25);
+            graphics.drawString("m - open menu", Main.buildingInfo[7][7].coordinates.x - 40, Main.buildingInfo[7][7].coordinates.y + 45);
 
             //sketching the shop if it's open
-            if (Main.shop.isOpen) {
-                Main.shop.Display(graphics);
+            if (Main.buildingShop.isOpen) {
+                Main.buildingShop.display(graphics);
+            }
+            //sketching the playershop if it's open
+            if (Main.playerShop.isOpen) {
+                Main.playerShop.display(graphics);
             }
             //sketching upgrades if upgrading
             if (Main.upgrading) {
@@ -97,12 +109,14 @@ public class Sketch extends JPanel {
             if (Main.menuScene == 3) {
                 Main.menu.drawInGameMenu(graphics);
             }
+            //sketching win menu if next level cannot be loaded
+            if (Main.menuScene == 4) {
+                Main.menu.drawWonMessage(graphics);
+            }
         }
     }
 
-
-
-    public void DeathMessage(Graphics2D graphics) {
+    public void deathMessage(Graphics2D graphics) {
         graphics.setColor(new Color(0, 0, 0, 150));
         graphics.fillRect(0, 0, 820, 840);
         graphics.setColor(new Color(111, 48, 48));

@@ -70,8 +70,8 @@ public class Archer extends Building {
     }
 
     public void establishUpgrades(int x, int y) {
-        Main.buildingInfo[x][y].upgrades[0] = new Upgrade(50, 1);
-        Main.buildingInfo[x][y].upgrades[1] = new Upgrade(50, 2);
+        Main.buildingInfo[x][y].upgrades[0] = new BuildingUpgrade(50, 1);
+        Main.buildingInfo[x][y].upgrades[1] = new BuildingUpgrade(50, 2);
     }
 
 }

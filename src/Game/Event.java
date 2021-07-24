@@ -1,21 +1,22 @@
 package Game;
 
-import Buildings.Upgrade;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 
-public class Event implements MouseListener, KeyListener {
+public class Event implements MouseListener, KeyListener, MouseMotionListener {
 
+    public Point playerPosition = new Point(0,0);
     public Point mousePosition;
-    public char recentKey;
 
-    public Event(Point mousePosition, char recentKey) {
+    public char recentKey;
+    public char recentReleased;
+
+    public Event(Point mousePosition, char recentKey, char recentReleased) {
 
         this.mousePosition = mousePosition;
         this.recentKey = recentKey;
+        this.recentReleased = recentReleased;
 
     }
 
@@ -24,27 +25,34 @@ public class Event implements MouseListener, KeyListener {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        mousePosition.x = (mouseEvent.getX() / 102);
-        mousePosition.y = (mouseEvent.getY() / 105);
-
-        if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
-            Main.shop.Purchase(mousePosition);
-        }
-        if (SwingUtilities.isRightMouseButton(mouseEvent)) {
-            Main.upgrading = !Main.upgrading;
-            Main.upgradeMenu.setUpgradeLocation(mousePosition.x, mousePosition.y);
-        }
-
     }
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
+        mousePosition.x = mouseEvent.getX();
+        mousePosition.y = mouseEvent.getY();
 
+        if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
+            Main.player.attacking[0] = true;
+            Main.player.getMousePosition(mousePosition);
+        }
+
+        if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+            Main.player.attacking[1] = true;
+            Main.player.getMousePosition(mousePosition);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-
+        mousePosition.x = mouseEvent.getX();
+        mousePosition.y = mouseEvent.getY();
+        if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
+            Main.player.attacking[0] = false;
+        }
+        if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+            Main.player.attacking[1] = false;
+        }
     }
 
     @Override
@@ -68,6 +76,32 @@ public class Event implements MouseListener, KeyListener {
     public void keyPressed(KeyEvent keyEvent) {
 
         recentKey = keyEvent.getKeyChar();
+
+        if (recentKey == 'w') {
+            Main.player.isUp = true;
+        }
+        if (recentKey == 'a') {
+            Main.player.isLeft = true;
+        }
+        if (recentKey == 's') {
+            Main.player.isDown = true;
+        }
+        if (recentKey == 'd') {
+            Main.player.isRight = true;
+        }
+
+        if (recentKey == ' ') {
+            playerPosition.x = (int)(Main.player.positionX + 20)/102;
+            playerPosition.y = (int)(Main.player.positionY + 40)/105;
+            Main.buildingShop.purchase(playerPosition);
+        }
+        if (recentKey == 'v') {
+            playerPosition.x = (int)(Main.player.positionX + 20)/102;
+            playerPosition.y = (int)(Main.player.positionY + 40)/105;
+            Main.upgradeMenu.setUpgradeLocation(playerPosition.x, playerPosition.y);
+            Main.upgrading = !Main.upgrading;
+        }
+
         if (Main.menuScene == 1) {
             if (recentKey == 'n') {
                 for (int x = 0; x < Main.buildingInfo.length; x++) {
@@ -79,7 +113,7 @@ public class Event implements MouseListener, KeyListener {
                 Main.currentLevel = 0;
                 Main.lives = 3;
                 Main.menuScene = 0;
-                Main.levels[Main.currentLevel].Load();
+                Main.levels[Main.currentLevel].load();
             }
             if (recentKey == 'm') {
                 if (Loader.loadSaveFile()) {
@@ -95,18 +129,26 @@ public class Event implements MouseListener, KeyListener {
             Main.menuScene = (Main.menuScene == 3? 0:3);
         }
         else if (recentKey == 'o') {
-            Main.shop.isOpen = !Main.shop.isOpen;
+            Main.buildingShop.isOpen = !Main.buildingShop.isOpen;
+        }
+        else if (recentKey == 't') {
+            Main.playerShop.isOpen = !Main.playerShop.isOpen;
         }
         else if (recentKey == 'e') {
-            Main.menuScene = 1;
+            if (Main.menuScene == 3) {
+                Main.menuScene = 1;
+            }
         }
-        else if (Main.shop.isOpen) {
-            Main.shop.Select(recentKey);
+        else if (Main.buildingShop.isOpen) {
+            Main.buildingShop.select(recentKey);
+        }
+        else if (Main.playerShop.isOpen) {
+            Main.playerShop.purchase(recentKey);
         }
         else if (Main.upgrading) {
-            Main.upgradeMenu.Purchase(recentKey);
+            Main.upgradeMenu.purchase(recentKey);
         }
-        if (recentKey == 's') {
+        if (recentKey == 'p') {
             if (Main.menuScene == 3) {
                 Loader.saveGame();
                 Main.menuScene = 0;
@@ -116,6 +158,30 @@ public class Event implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+
+        recentReleased = keyEvent.getKeyChar();
+
+        if (recentReleased == 'w') {
+            Main.player.isUp = false;
+        }
+        if (recentReleased == 'a') {
+            Main.player.isLeft = false;
+        }
+        if (recentReleased == 's') {
+            Main.player.isDown = false;
+        }
+        if (recentReleased == 'd') {
+            Main.player.isRight = false;
+        }
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+        Main.player.getMousePosition(mouseEvent.getPoint());
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
 
     }
 }

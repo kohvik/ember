@@ -12,7 +12,7 @@ public class UpgradeMenu {
         this.y = y;
     }
 
-    public void Purchase(int recentKey) {
+    public void purchase(int recentKey) {
         int selected = Character.getNumericValue(recentKey);
         if (selected == 1) {
             if (Main.gold >= Main.buildingInfo[x][y].upgrades[0].cost) {

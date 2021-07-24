@@ -2,7 +2,7 @@ package Game;
 
 import java.awt.*;
 
-public class Shop {
+public class BuildingShop {
 
     public int selected;
     public boolean isOpen;
@@ -12,7 +12,7 @@ public class Shop {
 
     public static Point[][] shopCoordinates = new Point[5][3];
 
-    public void Establish() {
+    public void establish() {
         for (int x = 0; x < shopCoordinates.length; x++) {
             for (int y = 0; y < shopCoordinates[x].length; y++) {
                 //terrible equations that i worked out in notebook sorry
@@ -21,7 +21,7 @@ public class Shop {
         }
     }
 
-    Shop(int selected, boolean isOpen, Dimension shopSize) {
+    BuildingShop(int selected, boolean isOpen, Dimension shopSize) {
 
         this.selected = selected;
         this.isOpen = isOpen;
@@ -29,8 +29,8 @@ public class Shop {
 
     }
 
-    public void Select(char recentKey) {
-        if (Main.shop.isOpen) {
+    public void select(char recentKey) {
+        if (Main.buildingShop.isOpen) {
             //parsing to make sure you cannot select a tower that does not exist
             if (recentKey == 'x') {
                 selling = true;
@@ -44,39 +44,39 @@ public class Shop {
         }
     }
 
-    public void Purchase(Point mousePosition) {
+    public void purchase(Point position) {
 
         if (selling) {
-            if (mousePosition.y < 3 || mousePosition.y > 4) {
+            if (position.y < 3 || position.y > 4) {
                 //ensuring you can't build on the info
-                if (mousePosition.x == 7 && mousePosition.y == 7) {
+                if (position.x == 7 && position.y == 7) {
 
                 }
-                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied != 0) {
-                    Main.gold += (Main.buildings[Main.buildingInfo[mousePosition.x][mousePosition.y].occupied - 1].cost)/2;
-                    Main.buildingInfo[mousePosition.x][mousePosition.y].setDefault();
+                else if (Main.buildingInfo[position.x][position.y].occupied != 0) {
+                    Main.gold += (Main.buildings[Main.buildingInfo[position.x][position.y].occupied - 1].cost)/2;
+                    Main.buildingInfo[position.x][position.y].setDefault();
                 }
             }
         }
         else if (Main.gold >= Main.buildings[(selected - 1)].cost) {
             //ensuring you can't build on the main path
-            if (mousePosition.y < 3 || mousePosition.y > 4) {
+            if (position.y < 3 || position.y > 4) {
                 //ensuring you can't build on the info
-                if (mousePosition.x == 7 && mousePosition.y == 7) {
+                if (position.x == 7 && position.y == 7) {
 
                 }
                 //ensuring you cannot build 2 towers on one square
-                else if (Main.buildingInfo[mousePosition.x][mousePosition.y].occupied == 0) {
-                    Main.buildingInfo[mousePosition.x][mousePosition.y].occupied = Main.buildings[selected - 1].id;
+                else if (Main.buildingInfo[position.x][position.y].occupied == 0) {
+                    Main.buildingInfo[position.x][position.y].occupied = Main.buildings[selected - 1].id;
                     Main.gold -= Main.buildings[(selected - 1)].cost;
-                    Main.buildings[(selected - 1)].establishUpgrades(mousePosition.x, mousePosition.y);
+                    Main.buildings[(selected - 1)].establishUpgrades(position.x, position.y);
                 }
             }
         }
 
     }
 
-    public void Display(Graphics2D graphics) {
+    public void display(Graphics2D graphics) {
         graphics.setColor(new Color(96, 96, 96));
         //here there is -20 on the y and + 20 later in the equation to account for space to add "shop" text
         graphics.fillRect(410 - (shopSize.width/2),400 - (shopSize.height/2), shopSize.width, shopSize.height + 20);

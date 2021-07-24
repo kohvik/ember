@@ -1,7 +1,7 @@
 package Buildings;
 
 import Game.Main;
-import Game.Shop;
+import Game.BuildingShop;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,7 +26,7 @@ public abstract class Building {
 
     protected void Draw(Graphics2D graphics, BufferedImage sprite, int x, int y, boolean shopDraw) {
         if (shopDraw) {
-            graphics.drawImage(sprite, Shop.shopCoordinates[x][y].x - 30, Shop.shopCoordinates[x][y].y - 30, 60, 60, null);
+            graphics.drawImage(sprite, BuildingShop.shopCoordinates[x][y].x - 30, BuildingShop.shopCoordinates[x][y].y - 30, 60, 60, null);
         } else {
             graphics.drawImage(sprite, Main.buildingInfo[x][y].coordinates.x - 50, Main.buildingInfo[x][y].coordinates.y - 50, 100, 100, null);
         }

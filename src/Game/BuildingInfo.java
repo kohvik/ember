@@ -1,6 +1,6 @@
 package Game;
 
-import Buildings.Upgrade;
+import Buildings.BuildingUpgrade;
 
 import java.awt.*;
 
@@ -11,9 +11,9 @@ public class BuildingInfo {
     public int repeat;
     public long preAttackTime;
     public int[] upgradeLevel;
-    public Upgrade[] upgrades;
+    public BuildingUpgrade[] upgrades;
 
-    public BuildingInfo(Point coordinates, int occupied, int repeat, long preAttackTime, int[] upgradeLevel, Upgrade[] upgrades) {
+    public BuildingInfo(Point coordinates, int occupied, int repeat, long preAttackTime, int[] upgradeLevel, BuildingUpgrade[] upgrades) {
 
         this.coordinates = coordinates;
         this.occupied = occupied;
@@ -28,8 +28,8 @@ public class BuildingInfo {
         occupied = 0;
         upgradeLevel[0] = 0;
         upgradeLevel[1] = 0;
-        upgrades[0] = new Upgrade(0,0);
-        upgrades[1] = new Upgrade(0,0);
+        upgrades[0] = new BuildingUpgrade(0,0);
+        upgrades[1] = new BuildingUpgrade(0,0);
     }
 
 }
